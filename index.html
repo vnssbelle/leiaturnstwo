@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leia Sage Turns 2 — A Kiki's Birthday Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sky-top:    #4a9fd4;
+      --sky-mid:    #73c0e8;
+      --sky-low:    #b8ddf5;
+      --navy:       #1b3a5c;
+      --ink:        #1c2e3a;
+      --red:        #c0392b;
+      --red-lt:     #e04030;
+      --cream:      #fdf6eb;
+      --parchm:     #f5e9d3;
+      --terracotta: #c47a5a;
+      --muted:      #6b7a8a;
+      --border:     #d9cbb5;
+      --body-bg:    #e8f4fb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 300;
+      background: var(--body-bg);
+      color: var(--ink);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── DAYTIME SKY HERO ── */
+    .sky {
+      position: relative;
+      background: linear-gradient(to bottom,
+        #3a8ec8 0%,
+        #5aaee0 30%,
+        #82c8f0 65%,
+        #bce0f8 85%,
+        #d8eef8 100%
+      );
+      padding: 0;
+      overflow: hidden;
+      text-align: center;
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 300px;
+    }
+
+    /* ── SKY STAGE (constrained content area) ── */
+    .sky-stage {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── CLOUDS ── */
+    .cloud-img {
+      position: absolute;
+      pointer-events: none;
+    }
+    .c1 { width: 190px; top: 12%;  left: -6%;   animation: driftR 28s linear infinite; }
+    .c2 { width: 130px; top: 14%; right: -10%;  animation: driftL 36s linear infinite 4s; }
+    .c3 { width: 90px; top: 2%;  left: 48%;   animation: driftR 22s linear infinite 10s; }
+    .c4 { width: 75px; top: 44%; left: -4%;   animation: driftR 32s linear infinite 18s; opacity: 0.8; }
+    .c5 { width: 100px; top: 52%; right: 4%;   animation: driftL 20s linear infinite 6s;  opacity: 0.7; }
+
+    @keyframes driftR { from { transform: translateX(0); } to { transform: translateX(130vw); } }
+    @keyframes driftL { from { transform: translateX(0); } to { transform: translateX(-130vw); } }
+
+    /* ── SEAGULLS ── */
+    .gulls {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .gull {
+      position: absolute;
+      animation: soar var(--dur, 18s) ease-in-out infinite var(--delay, 0s);
+    }
+    @keyframes soar {
+      0%   { transform: translateX(0) translateY(0) scaleX(1); }
+      25%  { transform: translateX(18px) translateY(-10px) scaleX(1); }
+      50%  { transform: translateX(30px) translateY(4px) scaleX(1); }
+      75%  { transform: translateX(12px) translateY(-6px) scaleX(1); }
+      100% { transform: translateX(0) translateY(0) scaleX(1); }
+    }
+
+    /* ── COASTLINE ── */
+    .coastline {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      overflow:hidden;
+    }
+
+    /* ── KIKI IMAGE ── */
+    .kiki-wrap {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      width: min(520px, 95vw);
+      animation: float 5s ease-in-out infinite;
+    }
+    .kiki-img {
+      width: 100%;
+      display: block;
+      mix-blend-mode: multiply;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(-12px); }
+    }
+
+    /* ── HERO TEXT CARD ── */
+    .hero-text {
+      position: relative;
+      z-index: 10;
+      margin: 1rem 1.5rem 1rem;
+      background-image: url('assets/Banner Card.svg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      aspect-ratio: 696 / 423;
+      padding: 1.8rem 2.5rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .sky-title {
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .sky-subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(0.6rem, 1.6vw, 0.78rem);
+      color: var(--terracotta);
+      margin-top: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 767px) {
+      .sky-title br { display: none; }
+      .sky-title { font-size: clamp(2.4rem, 5.5vw, 3.2rem); }
+    }
+
+    @media (min-width: 768px) {
+      .sky {
+        text-align: left;
+      }
+
+      .hero-text {
+        position: absolute;
+        z-index: 20;
+        bottom: -2.5rem;
+        left: 0;
+        margin: 0;
+        max-width: min(420px, 45vw);
+      }
+
+      .kiki-wrap {
+        left: 72%;
+        width: min(500px, 48vw);
+      }
+    }
+
+    /* ── RIBBON ── */
+    .ribbon {
+      background: var(--red);
+      color: var(--cream);
+      text-align: center;
+      padding: 0.75rem 1rem;
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      /* letter-spacing: 0.15em; */
+      /* text-transform: uppercase; */
+    }
+
+    /* ── MAIN CARD ── */
+    main {
+      background: var(--cream);
+      max-width: 680px;
+      margin: 0 auto 4rem;
+      box-shadow: 0 16px 50px rgba(30,80,140,.18);
+    }
+
+    section {
+      padding: 2.8rem 2.8rem;
+      position: relative;
+    }
+    section:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background-image: url('assets/border.svg');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    @media (max-width: 520px) {
+      section { padding: 2rem 1.5rem; }
+    }
+
+    /* ── DETAILS ── */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+      margin-top: 1.6rem;
+    }
+    @media (max-width: 560px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .detail-block { text-align: center; }
+    .detail-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.35rem;
+    }
+    .detail-value {
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .detail-value a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-value a:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── HEADINGS ── */
+    h2 {
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.9rem;
+      line-height: 120%;
+      text-align: center;
+    }
+    h2 .accent { color: var(--red); }
+    p {
+      font-size: 0.97rem;
+      line-height: 1.75;
+      color: #3a4a56;
+    }
+    p + p { margin-top: 0.8rem; }
+
+    /* ── ACTIVITY GRID ── */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-top: 1.6rem;
+    }
+    .activity-grid + .activity-grid {
+      margin-top: 0.6rem;
+    }
+    @media (max-width: 480px) {
+      .activity-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── DRESS CARD ── */
+    .dress-card {
+      background: var(--navy);
+      color: var(--cream);
+      border-radius: 4px;
+      padding: 1.6rem 2rem;
+      margin-top: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .dress-card::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 110px; height: 110px;
+      background: var(--red);
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+    .dress-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #a8d8f0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .dress-card p { font-size: 0.92rem; color: rgba(253,246,235,.85); line-height: 1.7; }
+
+    /* ── GIFT NOTE ── */
+    .parcel-note {
+      background: var(--parchm);
+      border-left: 3px solid var(--red);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 4px 4px 0;
+      margin-top: 1.4rem;
+    }
+    .parcel-note p { font-size: 0.92rem; }
+
+    /* ── RSVP ── */
+    .rsvp-section {
+      background: var(--navy);
+      color: var(--cream);
+    }
+    .rsvp-section h2 { color: var(--cream); }
+    .rsvp-section p { color: rgba(253,246,235,.75); margin-bottom: 1.4rem; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(253,246,235,.55);
+    }
+    input, select, textarea {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 3px;
+      padding: 0.7rem 0.9rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--cream);
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(253,246,235,.3); }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #a8d8f0;
+      background: rgba(255,255,255,.1);
+    }
+    select option { background: var(--navy); }
+    textarea { resize: vertical; min-height: 90px; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--red);
+      color: var(--cream);
+      border: none;
+      padding: 0.9rem 1rem;
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.4rem;
+    }
+    .submit-btn:hover { background: var(--red-lt); transform: translateY(-1px); }
+    .submit-btn:active { transform: translateY(0); }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+    .form-success .check { font-size: 2.5rem; margin-bottom: 0.7rem; }
+    .form-success h3 {
+      font-family: 'Cedarville Cursive', cursive;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #a8d8f0;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p { color: rgba(253,246,235,.7); font-size: 0.92rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.78rem;
+      color: rgba(30,60,100,.35);
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ DAYTIME SKY HERO ═══ -->
+<div class="sky">
+
+  <!-- Drifting clouds -->
+  <img class="cloud-img c1" src="assets/cloud-3.svg" alt="" aria-hidden="true" />
+  <img class="cloud-img c2" src="assets/cloud-1.svg" alt="" aria-hidden="true" />
+  <img class="cloud-img c3" src="assets/cloud-2.svg" alt="" aria-hidden="true" />
+  <img class="cloud-img c4" src="assets/cloud-2.svg" alt="" aria-hidden="true" />
+  <img class="cloud-img c5" src="assets/cloud.svg"   alt="" aria-hidden="true" />
+
+  <!-- Seagulls -->
+  <div class="gulls">
+    <svg class="gull" style="top:14%;left:18%;--dur:16s;--delay:0s" width="38" height="18" viewBox="0 0 38 18" fill="none">
+      <path d="M19 9 C14 3, 4 2, 0 5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M19 9 C24 3, 34 2, 38 5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    </svg>
+    <svg class="gull" style="top:8%;left:60%;--dur:20s;--delay:5s" width="28" height="14" viewBox="0 0 38 18" fill="none">
+      <path d="M19 9 C14 3, 4 2, 0 5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M19 9 C24 3, 34 2, 38 5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    </svg>
+    <svg class="gull" style="top:28%;right:22%;--dur:14s;--delay:9s" width="22" height="11" viewBox="0 0 38 18" fill="none">
+      <path d="M19 9 C14 3, 4 2, 0 5" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M19 9 C24 3, 34 2, 38 5" stroke="rgba(255,255,255,.7)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    </svg>
+    <svg class="gull" style="top:20%;left:40%;--dur:24s;--delay:2s" width="18" height="9" viewBox="0 0 38 18" fill="none">
+      <path d="M19 9 C14 3, 4 2, 0 5" stroke="rgba(255,255,255,.6)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <path d="M19 9 C24 3, 34 2, 38 5" stroke="rgba(255,255,255,.6)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Coastal village silhouette -->
+  <svg class="coastline" viewBox="0 0 800 180" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="130" width="800" height="50" fill="#bce0f8" opacity="0.6"/>
+    <ellipse cx="120" cy="140" rx="180" ry="55" fill="#6aabb8" opacity="0.4"/>
+    <ellipse cx="680" cy="145" rx="200" ry="50" fill="#6aabb8" opacity="0.35"/>
+    <rect x="540" y="80" width="24" height="55" fill="#e8d5b0"/>
+    <polygon points="540,80 552,62 564,80" fill="#c0392b"/>
+    <rect x="565" y="90" width="20" height="45" fill="#dbc89a"/>
+    <polygon points="565,90 575,74 585,90" fill="#a0522d"/>
+    <rect x="586" y="75" width="28" height="60" fill="#e0cfa8"/>
+    <polygon points="586,75 600,55 614,75" fill="#b03030"/>
+    <rect x="615" y="88" width="22" height="47" fill="#d4c090"/>
+    <polygon points="615,88 626,70 637,88" fill="#8b4513"/>
+    <rect x="638" y="95" width="18" height="40" fill="#e8d5b0"/>
+    <rect x="657" y="85" width="26" height="50" fill="#dbc89a"/>
+    <polygon points="657,85 670,65 683,85" fill="#c0392b"/>
+    <rect x="684" y="100" width="20" height="35" fill="#e0cfa8"/>
+    <rect x="80" y="100" width="16" height="38" fill="#d4c8a8" opacity="0.8"/>
+    <polygon points="80,100 88,86 96,100" fill="#b03030" opacity="0.8"/>
+    <rect x="97" y="105" width="14" height="33" fill="#cfc0a0" opacity="0.75"/>
+    <polygon points="97,105 104,93 111,105" fill="#8b4513" opacity="0.75"/>
+    <rect x="112" y="95" width="20" height="43" fill="#d8cdb0" opacity="0.8"/>
+    <polygon points="112,95 122,80 132,95" fill="#c0392b" opacity="0.8"/>
+    <ellipse cx="160" cy="118" rx="10" ry="18" fill="#4a8a60" opacity="0.7"/>
+    <ellipse cx="172" cy="122" rx="8" ry="14" fill="#3d7a52" opacity="0.65"/>
+    <ellipse cx="510" cy="114" rx="12" ry="20" fill="#4a8a60" opacity="0.7"/>
+    <ellipse cx="523" cy="118" rx="9" ry="16" fill="#3d7a52" opacity="0.65"/>
+    <rect x="0" y="132" width="800" height="48" fill="url(#seaGrad)" opacity="0.5"/>
+    <defs>
+      <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5aaee0"/>
+        <stop offset="100%" stop-color="#a8d0ec"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- Hero text card -->
+  <div class="sky-stage">
+    <div class="hero-text">
+      <div class="sky-title">Leia Sage <br/>turns two</div>
+      <div class="sky-subtitle">A Magical Celebration</div>
+    </div>
+
+    <!-- Kiki image -->
+    <div class="kiki-wrap">
+      <img class="kiki-img" src="kiki.png" alt="Kiki and Jiji" />
+    </div>
+  </div>
+
+</div>
+
+<!-- Red ribbon -->
+<div class="ribbon">kiki's delivery service themed day</div>
+
+<!-- ═══ MAIN CARD ═══ -->
+<main>
+
+  <!-- DETAILS -->
+  <section>
+    <div class="details-grid">
+      <div class="detail-block">
+        <div class="detail-label">Date</div>
+        <div class="detail-value ">sunday<br/>august two</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-label">Time</div>
+        <div class="detail-value">ten a.m. to one p.m.</br/> come when you can </div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-label">Location</div>
+        <div class="detail-value">
+          <a href="https://maps.apple.com/?address=250+Red+Pine+Dr,+West+St.+Paul,+MB" target="_blank" rel="noopener">two fifty <br/>red pine dr.</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section>
+    <h2>you're invited to</br> leia's magical cafe</h2>
+    <p>Leia is turning two — and what better way to celebrate than with some yummy pastries, iced drinks, good company and a touch of Kiki's magic? Join us for a cozy morning celebrating our little sassy girl, inspired by the charming European village world of <em>Kiki's Delivery Service</em>.</p>
+    <p>We'll have fresh breads and drinks, a doodle booth, and plenty of activities for little ones and big ones alike.</p>
+  </section>
+
+  <!-- ACTIVITIES -->
+  <section>
+    <h2>a morning of simple,</br> wholesome delights</h2>
+    <div class="activity-grid">
+      <div class="detail-block">
+        <div class="detail-illustration">Placeholder</div>
+        <div class="detail-label">drink & refreshments</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-illustration">Placeholder</div>
+        <div class="detail-label">pastries </br>(savoury & sweet)</div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-illustration">Placeholder</div>
+        <div class="detail-label">doodle booth</div>
+      </div>
+    </div>
+    <div class="activity-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="detail-block">
+        <div class="detail-illustration">placeholder</div>
+        <div class="detail-label">activities for all ages</div>
+      </div>
+      <div class="detail-block">
+        <div class="detailillustrationl">Placeholder</div>
+        <div class="detail-label">good company</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section>
+    <h2>come dressed for the journey</h2>
+    <p>We'd love for guests to dress in the spirit of Kiki's world — think cozy European village, 1950s charm, dresses, jumpsuits, neutral earthy tones, pale yellow and light blues. </p>
+    <div class="dress-card">
+      <h3>Dress inspiration</h3>
+      <p>Soft linens, village dresses, — the kind of clothes you'd wear strolling through Koriko on a breezy morning. Light blues, pale yellow, creams, and earthy browns are right at home.</p>
+    </div>
+  </section>
+
+  <!-- GIFTS -->
+  <section>
+    <h2>your presence is the present</h2>
+    <p>Leia's love and laughter are all we need, and your being there means the world to us. Gifts are absolutely not expected.</p>
+    <div class="parcel-note">
+      <p>If you'd like to bring something for Leia, wrap it simply in <strong>kraft paper or newspaper</strong> and tie it up like a parcel — in the spirit of Kiki's own deliveries. The wrapping is part of the magic.</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-section">
+    <h2>rsvp</h2>
+    <p>Please let us know you're coming by <strong style="color:var(--cream)">July 25th</strong> so we can have everything ready in time.</p>
+
+    <form id="rsvp-form" action="https://script.google.com/macros/s/AKfycbwz0CZv4EQXgpBM4Ejl93EnET7lrJXprY4pntXrBtt7SH6qIJmihsD0RlvVu1wBDW8q/exec" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Kiki Bakery" required />
+        </div>
+        <div class="form-group">
+          <label for="guests">Number of guests</label>
+          <select id="guests" name="guests" required>
+            <option value="" disabled selected># of guests coming</option>
+            <option value="1">Just me (1)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5+">5 or more</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="timeslot">time you'll most likely drop by?</label>
+        <select id="timeslot" name="timeslot" required>
+          <option value="" disabled selected>Select a time window</option>
+          <option value="10-11am">10:00 – 11:00 AM</option>
+          <option value="11-12pm">11:00 AM – 12:00 NN</option>
+          <option value="12-1pm">12:00 NN – 1:00 PM</option>
+          <option value="10-1pm">10:00 AM – 1:00 PM</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">A little note for Leia (optional)</label>
+        <textarea id="message" name="message" placeholder="Can't wait to celebrate with you, little one! 🧹"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Send your RSVP ✈</button>
+    </form>
+
+    <div class="form-success" id="form-success">
+      <div class="check">🌿</div>
+      <h3>See you at the party!</h3>
+      <p>We'll have a spot ready for you. Leia can't wait to celebrate with you.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>Made with love for Leia Sage · August 2, 2026</footer>
+
+<script>
+  const form = document.getElementById('rsvp-form');
+  const success = document.getElementById('form-success');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    const data = {
+      name:     form.querySelector('[name="name"]').value,
+      guests:   form.querySelector('[name="guests"]').value,
+      timeslot: form.querySelector('[name="timeslot"]').value,
+      note:     form.querySelector('[name="note"]').value,
+    };
+
+    try {
+      await fetch(form.action, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+      });
+      form.style.display = 'none';
+      success.style.display = 'block';
+    } catch {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

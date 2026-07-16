@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /Users/vanessabellevasallo/Documents/leia-birthday/.claude)",
+      "Bash(python3 -m http.server 8743)",
+      "mcp__claude-in-chrome__tabs_context_mcp"
+    ]
+  }
+}
