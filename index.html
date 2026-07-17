@@ -296,6 +296,25 @@
       .activity-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    .detail-illustration {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.6rem;
+    }
+    .detail-illustration img {
+      height: 80px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+    .activity-note {
+      text-align: center;
+      margin-top: 1.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
     /* ── DRESS CARD ── */
     .dress-card {
       background: var(--navy);
@@ -553,18 +572,14 @@
       </div>
       <div class="detail-block">
         <div class="detail-illustration"><img src="assets/pastries.png" alt="pastries" /></div>
-        <div class="detail-label">pastries </br>(savoury & sweet)</div>
+        <div class="detail-label">pastries<br/>(savoury & sweet)</div>
       </div>
       <div class="detail-block">
         <div class="detail-illustration"><img src="assets/booth.png" alt="doodle booth" /></div>
         <div class="detail-label">doodle booth</div>
       </div>
     </div>
-    <div class="activity-grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="detail-block">
-        <div class="detail-label">activities for all ages and good company</div>
-      </div>
-    </div>
+    <p class="activity-note">activities for all ages &amp; good company</p>
   </section>
 
   <!-- DRESS CODE -->
@@ -573,7 +588,7 @@
     <p>We'd love for guests to dress in the spirit of Kiki's world — think cozy European village, 1950s charm, dresses, jumpsuits, neutral earthy tones, pale yellow and light blues. </p>
     <div class="dress-card">
       <h3>Dress inspiration</h3>
-      <p>Soft linens, village dresses, — the kind of clothes you'd wear strolling through Koriko on a breezy morning. Light blues, pale yellow, creams, and earthy browns are right at home.</p>
+      <p>Think soft linens, effortless village dresses, and easy coastal layers—the kind of pieces you’d wear strolling through Koriko on a breezy morning. We invite you to join us in a palette of light blues, pale yellows, soft creams, and warm, earthy browns..</p>
     </div>
   </section>
 

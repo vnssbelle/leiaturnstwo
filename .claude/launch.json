@@ -3,9 +3,10 @@
   "configurations": [
     {
       "name": "static-server",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8743"],
-      "port": 8743
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "npx serve /Users/vanessabellevasallo/Documents/leia-birthday --listen ${PORT:-8743} --no-clipboard"],
+      "port": 8743,
+      "autoPort": true
     }
   ]
 }

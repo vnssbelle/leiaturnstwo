@@ -3,7 +3,16 @@
     "allow": [
       "Bash(mkdir -p /Users/vanessabellevasallo/Documents/leia-birthday/.claude)",
       "Bash(python3 -m http.server 8743)",
-      "mcp__claude-in-chrome__tabs_context_mcp"
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "Bash(kill 16249)",
+      "Bash(xargs kill -9)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)",
+      "Bash(git rebase *)",
+      "Bash(GIT_EDITOR=true git rebase --continue)"
     ]
   }
 }
